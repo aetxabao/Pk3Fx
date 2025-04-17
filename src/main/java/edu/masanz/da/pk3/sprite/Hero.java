@@ -29,7 +29,6 @@ public class Hero extends ASprite {
         isAlive = true;
         weapons = new ArrayList<>();
         weapons.add( new Pistol(this) );
-//        addWeapon( new CrossGun(this) );            // comentar y descomentar esta línea para probar CrossGun
     }
 
     public void setInitPos(){

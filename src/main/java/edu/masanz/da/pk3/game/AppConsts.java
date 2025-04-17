@@ -27,7 +27,7 @@ public final class AppConsts {
     //endregion
 
     //region GameManager
-    public static final int INIT_LEVEL = 11;         //11;     <------      write here the level you want to start
+    public static final int INIT_LEVEL = 10;         //1;     <------      write here the level you want to start
     public static final int INIT_LIFES = 3;
     public static final int PTS_ENEMYSHIP = 20;
     public static final int PTS_NEWLEVEL = 100;

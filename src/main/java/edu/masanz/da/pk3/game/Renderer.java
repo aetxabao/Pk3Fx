@@ -68,9 +68,9 @@ public class Renderer {
         if (gameManager.getHero().isAlive()) {
             gameManager.getHero().draw(gc);
         }
-//        for (ASprite item : gameManager.items) {                                // descomentar
-//            item.draw(gc);                                                      // descomentar
-//        }                                                                       // descomentar
+        for (ASprite item : gameManager.items) {
+            item.draw(gc);
+        }
         for (ASprite enemy : gameManager.enemies) {
             enemy.draw(gc);
         }

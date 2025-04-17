@@ -4,7 +4,7 @@ import edu.masanz.da.pk3.sprite.*;
 import edu.masanz.da.pk3.sprite.effects.SpriteTemp;
 import edu.masanz.da.pk3.sprite.hud.LifesSprite;
 import edu.masanz.da.pk3.sprite.interfaces.ICanSpawn;
-import edu.masanz.da.pk3.sprite.items.*;
+import edu.masanz.da.pk3.sprite.items.AItem;
 import edu.masanz.da.pk3.sprite.weaponry.AShot;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class GameManager {
     protected List<AShot> enemyShots = new ArrayList<>();
     protected List<AEnemy> enemies = new ArrayList<>();
     protected List<SpriteTemp> temps = new ArrayList<>();
-//    protected List<AItem> items = new ArrayList<>();                  // descomentar
+    protected List<AItem> items = new ArrayList<>();
 
     public int score = 0;
     private AppStatus appStatus;
@@ -57,9 +57,8 @@ public class GameManager {
         hero.rechargePistol();
         lifesSprite.update();
         enemies.clear();
-//        items.clear();                                                // descomentar
-        SceneLoader.loadEnemiesItems(enemies);                          // comentar
-//        SceneLoader.loadEnemiesItems(enemies, items);                 // descomentar
+        items.clear();
+        SceneLoader.loadEnemiesItems(enemies, items);
     }
 
     public void nextLevel(){
@@ -68,10 +67,9 @@ public class GameManager {
         SceneLoader.loadScene(appStatus.getLevel());
         clearLevel();
         enemies.clear();
-//        items.clear();                                                // descomentar
+        items.clear();
         hero.setAlive(true);
-        SceneLoader.loadEnemiesItems(enemies);                          // comentar
-//        SceneLoader.loadEnemiesItems(enemies, items);                 // descomentar
+        SceneLoader.loadEnemiesItems(enemies, items);
     }
 
     public void sameLevel(){
@@ -110,15 +108,15 @@ public class GameManager {
 
     public void updateGame() {
         //Detección si el protagonista ha tocado algún item
-//        for (Iterator<AItem> itItem = items.iterator(); itItem.hasNext(); ) {                          // descomentar
-//            AItem item = itItem.next();                                                                // descomentar
-//            if(hero.isAlive() && item.collides(hero)){                                                 // descomentar
-//                item.useItem();                                                                        // descomentar
-//                itItem.remove();                                                                       // descomentar
-//                temps.add(new SpriteTemp(temps, hero.getRect().centerX(), hero.getRect().centerY(),    // descomentar
-//                        CHISPAS_10_SPRITE_IMAGE, 10));                                           // descomentar
-//            }                                                                                          // descomentar
-//        }                                                                                              // descomentar
+        for (Iterator<AItem> itItem = items.iterator(); itItem.hasNext(); ) {
+            AItem item = itItem.next();
+            if(hero.isAlive() && item.collides(hero)){
+                item.useItem();
+                itItem.remove();
+                temps.add(new SpriteTemp(temps, hero.getRect().centerX(), hero.getRect().centerY(),
+                        CHISPAS_10_SPRITE_IMAGE, 10));
+            }
+        }
 
         //Detección de colisión entre balas
          for (Iterator<AShot> itHeroShot = heroShots.iterator(); itHeroShot.hasNext(); ) {
@@ -165,9 +163,9 @@ public class GameManager {
         }
 
         //Actualización de los items
-//        for (ASprite item : items) {                                  // descomentar
-//            item.update();                                            // descomentar
-//        }                                                             // descomentar
+        for (ASprite item : items) {
+            item.update();
+        }
         //Actualización del protagonista
         if (hero.isAlive()) {
             hero.update();

@@ -2,7 +2,10 @@ package edu.masanz.da.pk3.game;
 
 import edu.masanz.da.pk3.Main;
 import edu.masanz.da.pk3.sprite.enemies.*;
-import edu.masanz.da.pk3.sprite.items.*;
+import edu.masanz.da.pk3.sprite.items.AItem;
+import edu.masanz.da.pk3.sprite.items.AmmunitionItem;
+import edu.masanz.da.pk3.sprite.items.CrossGunItem;
+import edu.masanz.da.pk3.sprite.items.LifeItem;
 import edu.masanz.da.pk3.util.Position;
 
 import java.io.BufferedReader;
@@ -108,8 +111,7 @@ public class SceneLoader {
         return m;
     }
 
-    public static void loadEnemiesItems(List<AEnemy> enemies) {                                         // comentar
-//    public static void loadEnemiesItems(List<AEnemy> enemies, List<AItem> items) {                    // descomentar
+    public static void loadEnemiesItems(List<AEnemy> enemies, List<AItem> items) {
         int level = sceneNumber % sceneLimit;
         if (level == 0) { level = sceneLimit; }
         String elementPath = SL_PATH + SL_ELE + level + SL_EXT;
@@ -141,13 +143,13 @@ public class SceneLoader {
                                 case SL_E_WATER_SHARK_R -> new Shark(0);            // R
                                 case SL_E_WATER_SHARK_L -> new Shark(180);          // r
                                 case SL_E_TOWER -> new Tower();                                   // T
-//                                case SL_E_VWX_R -> new FlyingBouncerEnemy(0);     // V                // descomentar
-//                                case SL_E_VWX_L -> new FlyingBouncerEnemy(180);   // v                // descomentar
-//                                case SL_E_VWX_RD -> new FlyingBouncerEnemy(330);  // W                // descomentar
-//                                case SL_E_VWX_LD -> new FlyingBouncerEnemy(210);  // w                // descomentar
-//                                case SL_E_VWX_RU -> new FlyingBouncerEnemy(30);   // X                // descomentar
-//                                case SL_E_VWX_LU -> new FlyingBouncerEnemy(150);  // x                // descomentar
-//                                case SL_E_BOMB -> new BombEnemy();                // S                // descomentar
+                                case SL_E_VWX_R -> new FlyingBouncerEnemy(0);     // V
+                                case SL_E_VWX_L -> new FlyingBouncerEnemy(180);   // v
+                                case SL_E_VWX_RD -> new FlyingBouncerEnemy(330);  // W
+                                case SL_E_VWX_LD -> new FlyingBouncerEnemy(210);  // w
+                                case SL_E_VWX_RU -> new FlyingBouncerEnemy(30);   // X
+                                case SL_E_VWX_LU -> new FlyingBouncerEnemy(150);  // x
+                                case SL_E_BOMB -> new BombEnemy();                              // S
                                 default -> null;
                             };
                             if (enemy != null) {
@@ -155,19 +157,19 @@ public class SceneLoader {
                                 enemies.add(enemy);
                             }
                         }
-//                        if ( SL_ITEMS.indexOf(c) != -1) {                                                               // descomentar
-//                            AItem item = switch (c) {                                                                   // descomentar
-//                                case SL_I_LIFE -> new LifeItem();                                   // u                // descomentar
-//                                case SL_I_AMMUNITION_LARGE -> new AmmunitionItem(10);               // A                // descomentar
-//                                case SL_I_AMMUNITION_SMALL -> new AmmunitionItem(5);                // a                // descomentar
-//                                case SL_I_CROSSGUN -> new CrossGunItem();                           // E                // descomentar
-//                                default -> null;                                                                        // descomentar
-//                            };                                                                                          // descomentar
-//                            if (item != null) {                                                                         // descomentar
-//                                item.setPos((int) (xIdx * tileWidth), (int) ((yIdx + 1) * tileHeight));                 // descomentar
-//                                items.add(item);                                                                        // descomentar
-//                            }                                                                                           // descomentar
-//                        }                                                                                               // descomentar
+                        if ( SL_ITEMS.indexOf(c) != -1) {
+                            AItem item = switch (c) {
+                                case SL_I_LIFE -> new LifeItem();                                   // u
+                                case SL_I_AMMUNITION_LARGE -> new AmmunitionItem(10);               // A
+                                case SL_I_AMMUNITION_SMALL -> new AmmunitionItem(5);                // a
+                                case SL_I_CROSSGUN -> new CrossGunItem();                           // E
+                                default -> null;
+                            };
+                            if (item != null) {
+                                item.setPos((int) (xIdx * tileWidth), (int) ((yIdx + 1) * tileHeight));
+                                items.add(item);
+                            }
+                        }
                     }
                 }
                 yIdx++;
